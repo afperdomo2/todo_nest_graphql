@@ -8,4 +8,7 @@ type Query {
 
   """Devuelve un número aleatorio"""
   randomNumber: Float!
+
+  """Devuelve un número aleatorio entre 0 y un máximo (por defecto 6)"""
+  getRandomFromZeroTo(to: Int! = 6): Float!
 }
