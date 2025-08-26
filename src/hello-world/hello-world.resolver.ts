@@ -19,7 +19,7 @@ export class HelloWorldResolver {
   }
 
   @Query(() => Float, {
-    name: 'getRandomFromZeroTo',
+    name: 'randomFromZeroTo',
     description:
       'Devuelve un número aleatorio entre 0 y un máximo (por defecto 6)',
   })

@@ -2,6 +2,17 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Todo {
+  """ID de la tarea"""
+  id: Int!
+
+  """Descripción de la tarea"""
+  description: String!
+
+  """Estado de la tarea"""
+  completed: Boolean!
+}
+
 type Query {
   """Devuelve un saludo en español"""
   hello: String!
@@ -10,5 +21,11 @@ type Query {
   randomNumber: Float!
 
   """Devuelve un número aleatorio entre 0 y un máximo (por defecto 6)"""
-  getRandomFromZeroTo(to: Int! = 6): Float!
+  randomFromZeroTo(to: Int! = 6): Float!
+
+  """Lista todas las tareas"""
+  todos: [Todo!]!
+
+  """Obtiene una tarea por su ID"""
+  todo(id: Int!): Todo!
 }
