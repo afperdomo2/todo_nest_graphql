@@ -47,4 +47,29 @@ export class TodosResolver {
     this.todosService.delete(id);
     return true;
   }
+
+  // Aggregations
+  @Query(() => Int, {
+    name: 'todosCount',
+    description: 'Cuenta el número de tareas',
+  })
+  count(): number {
+    return this.todosService.count();
+  }
+
+  @Query(() => Int, {
+    name: 'completedTodosCount',
+    description: 'Cuenta el número de tareas completadas',
+  })
+  completedCount(): number {
+    return this.todosService.countCompleted();
+  }
+
+  @Query(() => Int, {
+    name: 'incompletedTodosCount',
+    description: 'Cuenta el número de tareas incompletas',
+  })
+  incompletedCount(): number {
+    return this.todosService.countIncompleted();
+  }
 }

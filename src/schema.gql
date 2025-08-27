@@ -31,6 +31,15 @@ type Query {
 
   """Obtiene una tarea por su ID"""
   todo(id: Int!): Todo!
+
+  """Cuenta el número de tareas"""
+  todosCount: Int!
+
+  """Cuenta el número de tareas completadas"""
+  completedTodosCount: Int!
+
+  """Cuenta el número de tareas incompletas"""
+  incompletedTodosCount: Int!
 }
 
 type Mutation {

@@ -9,7 +9,20 @@ export class TodosService {
     { id: 1, description: 'Todo 1', completed: false },
     { id: 2, description: 'Todo 2', completed: true },
     { id: 3, description: 'Todo 3', completed: false },
+    { id: 4, description: 'Todo 4', completed: true },
   ];
+
+  count(): number {
+    return this.todos.length;
+  }
+
+  countCompleted(): number {
+    return this.todos.filter((todo) => todo.completed).length;
+  }
+
+  countIncompleted(): number {
+    return this.todos.filter((todo) => !todo.completed).length;
+  }
 
   findAll(filters: FilterTodoArgs): Todo[] {
     const { completed } = filters;
