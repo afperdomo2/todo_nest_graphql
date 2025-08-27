@@ -2,6 +2,7 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateTodoInput, FilterTodoArgs, UpdateTodoInput } from './dto';
 import { Todo } from './entities/todo.entity';
 import { TodosService } from './todos.service';
+import { AggregationsType } from './types/aggregations.type';
 
 @Resolver()
 export class TodosResolver {
@@ -48,7 +49,8 @@ export class TodosResolver {
     return true;
   }
 
-  // Aggregations
+  // ! 1. Aggregations
+  // Esta es una forma de obtener las agregaciones de las tareas
   @Query(() => Int, {
     name: 'todosCount',
     description: 'Cuenta el número de tareas',
@@ -71,5 +73,20 @@ export class TodosResolver {
   })
   incompletedCount(): number {
     return this.todosService.countIncompleted();
+  }
+
+  // ! 2. Aggregations - ObjectType
+  // Esta es otra forma de obtener las agregaciones de las tareas
+  @Query(() => AggregationsType, {
+    name: 'todosAggregations',
+    description: 'Obtiene las agregaciones de las tareas',
+  })
+  aggregations(): AggregationsType {
+    return {
+      total: this.todosService.count(),
+      completedCount: this.todosService.countCompleted(),
+      incompletedCount: this.todosService.countIncompleted(),
+      totalTodosCompleted: this.todosService.countCompleted(), // Deprecated
+    };
   }
 }

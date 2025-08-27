@@ -2,6 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""Entidad de una tarea"""
 type Todo {
   """ID de la tarea"""
   id: Int!
@@ -11,6 +12,21 @@ type Todo {
 
   """Estado de la tarea"""
   completed: Boolean!
+}
+
+"""Agregaciones de tareas"""
+type AggregationsType {
+  """Número total de tareas"""
+  total: Int!
+
+  """Número de tareas completadas"""
+  completedCount: Int!
+
+  """Número de tareas incompletas"""
+  incompletedCount: Int!
+
+  """Número de tareas completadas"""
+  totalTodosCompleted: Int! @deprecated(reason: "Usa `completedCount` en su lugar")
 }
 
 type Query {
@@ -40,6 +56,9 @@ type Query {
 
   """Cuenta el número de tareas incompletas"""
   incompletedTodosCount: Int!
+
+  """Obtiene las agregaciones de las tareas"""
+  todosAggregations: AggregationsType!
 }
 
 type Mutation {

@@ -1,6 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
-@ObjectType()
+@ObjectType({ description: 'Entidad de una tarea' })
 export class Todo {
   @Field(() => Int, { description: 'ID de la tarea' })
   id: number;
