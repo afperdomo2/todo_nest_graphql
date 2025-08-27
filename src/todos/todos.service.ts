@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { FilterTodoArgs } from './dto/args/filter-todo.args';
 import { CreateTodoInput } from './dto/inputs/create-todo-input.dto';
 import { Todo } from './entities/todo.entity';
 
@@ -10,8 +11,11 @@ export class TodosService {
     { id: 3, description: 'Todo 3', completed: false },
   ];
 
-  findAll(): Todo[] {
-    return this.todos;
+  findAll(filters: FilterTodoArgs): Todo[] {
+    const { completed } = filters;
+    const filterCondition = (todo: Todo) =>
+      completed !== undefined ? todo.completed === completed : true;
+    return this.todos.filter(filterCondition);
   }
 
   findOne(id: number): Todo {

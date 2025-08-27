@@ -24,7 +24,10 @@ type Query {
   randomFromZeroTo(to: Int! = 6): Float!
 
   """Lista todas las tareas"""
-  todos: [Todo!]!
+  todos(
+    """Filtrar por tareas completadas"""
+    completed: Boolean
+  ): [Todo!]!
 
   """Obtiene una tarea por su ID"""
   todo(id: Int!): Todo!
