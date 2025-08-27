@@ -29,3 +29,13 @@ type Query {
   """Obtiene una tarea por su ID"""
   todo(id: Int!): Todo!
 }
+
+type Mutation {
+  """Crea una nueva tarea"""
+  createTodo(data: CreateTodoInput!): Todo!
+}
+
+input CreateTodoInput {
+  """Descripción de la tarea"""
+  description: String!
+}
