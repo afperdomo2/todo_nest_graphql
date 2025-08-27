@@ -33,9 +33,23 @@ type Query {
 type Mutation {
   """Crea una nueva tarea"""
   createTodo(data: CreateTodoInput!): Todo!
+
+  """Actualiza una tarea existente"""
+  updateTodo(data: UpdateTodoInput!): Todo!
 }
 
 input CreateTodoInput {
   """Descripción de la tarea"""
   description: String!
+}
+
+input UpdateTodoInput {
+  """ID de la tarea"""
+  id: Int!
+
+  """Descripción de la tarea"""
+  description: String
+
+  """Estado de la tarea"""
+  completed: Boolean
 }

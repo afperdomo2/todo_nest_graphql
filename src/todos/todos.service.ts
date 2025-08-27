@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Todo } from './entities/todo.entity';
 import { CreateTodoInput } from './dto/inputs/create-todo-input.dto';
+import { Todo } from './entities/todo.entity';
 
 @Injectable()
 export class TodosService {
@@ -30,10 +30,11 @@ export class TodosService {
     return newTodo;
   }
 
-  update(id: number, updatedTodo: Partial<Todo>): Todo {
+  update(data: Partial<Todo>): Todo {
+    const { id, ...changes } = data;
     const todo = this.findOne(id);
     if (todo) {
-      Object.assign(todo, updatedTodo);
+      Object.assign(todo, changes);
     }
     return todo;
   }
