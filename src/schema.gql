@@ -36,6 +36,9 @@ type Mutation {
 
   """Actualiza una tarea existente"""
   updateTodo(data: UpdateTodoInput!): Todo!
+
+  """Elimina una tarea existente"""
+  deleteTodo(id: Int!): Boolean!
 }
 
 input CreateTodoInput {

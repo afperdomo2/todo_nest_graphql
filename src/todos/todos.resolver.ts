@@ -39,5 +39,12 @@ export class TodosResolver {
     return this.todosService.update(data);
   }
 
-  delete() {}
+  @Mutation(() => Boolean, {
+    name: 'deleteTodo',
+    description: 'Elimina una tarea existente',
+  })
+  delete(@Args('id', { type: () => Int }) id: number) {
+    this.todosService.delete(id);
+    return true;
+  }
 }

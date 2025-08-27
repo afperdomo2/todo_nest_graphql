@@ -40,6 +40,7 @@ export class TodosService {
   }
 
   delete(id: number): void {
+    this.findOne(id);
     this.todos = this.todos.filter((todo) => todo.id !== id);
   }
 
